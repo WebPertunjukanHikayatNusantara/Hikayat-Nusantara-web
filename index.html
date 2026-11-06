@@ -21,6 +21,8 @@
       --muted: #667180;
       --line: rgba(16, 27, 45, .12);
       --radius: 22px;
+      /* Path gambar latar hero: sesuaikan dengan nama & lokasi file gambarmu */
+      --hero-img: url("img/candi-sukuh.jpg");
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -46,9 +48,9 @@
     .hero::before { content: ""; z-index: 1; position: absolute; width: 560px; height: 560px; border: 1px solid rgba(214,173,97,.18); border-radius: 50%; right: -100px; top: -220px; box-shadow: 0 0 0 55px rgba(214,173,97,.035), 0 0 0 110px rgba(214,173,97,.025); }
     .hero::after { content: ""; z-index: 1; position: absolute; inset: auto 0 0; height: 5px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
     /* Latar candi Sukuh: transparan + animasi masuk sederhana */
-    .hero-bg { position: absolute; inset: 0; z-index: 0; background-image: url("img/candi-sukuh.jpg"); background-repeat: no-repeat; background-position: center 75%; background-size: max(100%, 1000px) auto; opacity: .3; animation: bgIn 2.4s ease-out both, bgDrift 22s ease-in-out 2.4s infinite alternate forwards; }
-    .hero-shade { position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(16,27,45,.92) 0%, rgba(16,27,45,.6) 55%, rgba(16,27,45,.25) 100%), linear-gradient(0deg, var(--navy) 0%, transparent 30%); }
-    @keyframes bgIn { from { opacity: 0; transform: scale(1.08); } to { opacity: .3; transform: scale(1); } }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background-image: var(--hero-img); background-repeat: no-repeat; background-position: center 75%; background-size: max(100%, 1000px) auto; opacity: 1; animation: bgIn 2.4s ease-out both, bgDrift 22s ease-in-out 2.4s infinite alternate forwards; }
+    .hero-shade { position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(16,27,45,.78) 0%, rgba(16,27,45,.55) 60%, rgba(16,27,45,.4) 100%); }
+    @keyframes bgIn { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
     @keyframes bgDrift { from { transform: scale(1); } to { transform: scale(1.05); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 56px; padding-top: 92px; padding-bottom: 100px; }
