@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#101b2d" />
   <meta name="description" content="Hikayat Nusantara — Gelar Karya Symphony of Nusantara SMA Pangudi Luhur Santo Yosef Surakarta, 20 November 2026." />
+
   <title>Hikayat Nusantara — SMA Santo Yosef</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +53,7 @@
       margin: 0 auto;
     }
 
-    /* NAVIGATION */
+    /* NAVBAR */
     header {
       position: sticky;
       top: 0;
@@ -119,7 +120,7 @@
       border: 1px solid transparent;
       font-weight: 700;
       font-size: .92rem;
-      transition: transform .25s, background .25s, box-shadow .25s;
+      transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
       cursor: pointer;
     }
 
@@ -155,12 +156,13 @@
       color: #fff;
     }
 
-    /* HERO */
+    /* HERO / POSTER */
     .hero {
       background: var(--navy);
       color: white;
       position: relative;
       overflow: hidden;
+      padding: 48px 0 65px;
     }
 
     .hero::before {
@@ -175,6 +177,7 @@
       box-shadow:
         0 0 0 55px rgba(214,173,97,.035),
         0 0 0 110px rgba(214,173,97,.025);
+      pointer-events: none;
     }
 
     .hero::after {
@@ -188,69 +191,59 @@
     .hero-grid {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      align-items: center;
-      gap: 56px;
-      padding-top: 92px;
-      padding-bottom: 100px;
+      display: block;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      margin: 0 auto;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       color: var(--gold-light);
       font-size: .78rem;
       font-weight: 700;
       letter-spacing: .16em;
       text-transform: uppercase;
+      margin-bottom: 25px;
     }
 
-    .eyebrow::before {
+    .eyebrow::before,
+    .eyebrow::after {
       content: "";
       width: 28px;
       height: 1px;
       background: var(--gold);
     }
 
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-
-    h1 {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(3.3rem, 7vw, 6.3rem);
-      line-height: .99;
-      letter-spacing: -.045em;
-      margin: 22px 0 24px;
-    }
-
-    h1 span {
-      color: var(--gold-light);
+    .hero-poster {
       display: block;
-      font-style: italic;
+      width: min(100%, 760px);
+      max-height: 1000px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+      animation: posterEnter 1s ease both;
+      transition: transform .5s ease, box-shadow .5s ease;
     }
 
-    .hero-copy {
-      color: #d2d9e3;
-      font-size: 1.05rem;
-      max-width: 520px;
-      margin: 0;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
+    .hero-poster:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 32px 80px rgba(0,0,0,.45);
     }
 
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 14px 24px;
-      margin-top: 36px;
+      margin-top: 30px;
       color: #d2d9e3;
       font-size: .88rem;
     }
@@ -268,110 +261,26 @@
       background: var(--gold);
     }
 
-    /* POSTER: TETAP DI PANEL SEBELAH KANAN */
-    .poster {
-      min-height: 440px;
-      border: 1px solid rgba(240,216,166,.35);
-      border-radius: 180px 180px 24px 24px;
-      padding: 18px;
-      background: linear-gradient(
-        145deg,
-        rgba(214,173,97,.16),
-        rgba(255,255,255,.025)
-      );
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-      animation: posterFloat 6s ease-in-out infinite;
-    }
-
-    .poster-inner {
-      height: 100%;
-      min-height: 404px;
-      border-radius: 165px 165px 15px 15px;
-      border: 1px solid rgba(240,216,166,.24);
-      position: relative;
-      overflow: hidden;
+    .hero-actions {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      text-align: center;
-      padding: 28px;
-      background: radial-gradient(
-        ellipse at 50% 30%,
-        rgba(214,173,97,.16),
-        transparent 52%
-      );
+      gap: 12px;
+      margin-top: 28px;
     }
 
-    /* Gambar poster menjadi latar transparan */
-    .poster-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      opacity: .78;
-      z-index: -1;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      transition: opacity .5s ease, transform .8s ease;
+    @keyframes posterEnter {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    .poster:hover .poster-image {
-      opacity: .95;
-      transform: scale(1.025);
-    }
-
-    .ornament {
-      width: 105px;
-      height: 105px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin-bottom: 26px;
-      color: var(--gold-light);
-      font-size: 2.2rem;
-      position: relative;
-    }
-
-    .ornament::before,
-    .ornament::after {
-      content: "";
-      position: absolute;
-      width: 120%;
-      height: 1px;
-      background: rgba(214,173,97,.45);
-    }
-
-    .ornament::after {
-      transform: rotate(90deg);
-    }
-
-    .poster-kicker {
-      color: var(--gold-light);
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-
-    .poster-title {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 2rem;
-      line-height: 1.15;
-      margin: 12px 0;
-    }
-
-    .poster-note {
-      color: #c4ceda;
-      font-size: .82rem;
-      max-width: 210px;
-      margin: 0;
-    }
-
-    /* SECTION */
+    /* GENERAL SECTION */
     section {
       padding: 80px 0;
     }
@@ -403,7 +312,7 @@
       margin: 0;
     }
 
-    /* DETAIL */
+    /* ABOUT */
     .details-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -414,11 +323,12 @@
       border: 1px solid var(--line);
       padding: 20px;
       border-radius: 16px;
-      transition: transform .3s, box-shadow .3s;
+      background: white;
+      transition: transform .3s ease, box-shadow .3s ease;
     }
 
     .detail:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       box-shadow: 0 12px 30px rgba(16,27,45,.08);
     }
 
@@ -437,7 +347,7 @@
     .detail strong {
       display: block;
       color: var(--navy);
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .detail span {
@@ -470,11 +380,6 @@
       gap: 20px;
       padding: 23px 0;
       border-bottom: 1px solid rgba(16,27,45,.15);
-      transition: padding-left .25s;
-    }
-
-    .schedule-item:hover {
-      padding-left: 8px;
     }
 
     .schedule-time {
@@ -501,16 +406,21 @@
       font-size: .8rem;
     }
 
-    /* REGISTRATION + QRIS */
+    /* REGISTRATION AND QRIS */
     .register-banner {
       background: var(--cream);
       border-radius: 28px;
-      padding: 38px 44px;
-      display: flex;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
       justify-content: space-between;
       align-items: center;
-      gap: 28px;
+      gap: 35px;
       border: 1px solid var(--line);
+    }
+
+    .register-info {
+      max-width: 450px;
     }
 
     .register-banner h2 {
@@ -523,40 +433,43 @@
       color: var(--muted);
     }
 
-    .register-payment {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-shrink: 0;
+    .register-button {
+      margin-top: 22px;
     }
 
-    .qris-wrap {
-      text-align: center;
-    }
-
-    .qris-image {
-      display: block;
-      width: 125px;
-      height: 125px;
-      object-fit: contain;
-      background: #fff;
+    .qris-card {
+      width: 260px;
+      padding: 18px;
+      background: white;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 5px;
-      transition: transform .3s, box-shadow .3s;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 12px 35px rgba(16,27,45,.08);
     }
 
-    .qris-image:hover {
-      transform: scale(1.04);
-      box-shadow: 0 8px 22px rgba(16,27,45,.12);
-    }
-
-    .qris-caption {
+    .qris-card img {
       display: block;
-      margin-top: 6px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform .3s ease;
+    }
+
+    .qris-card img:hover {
+      transform: scale(1.025);
+    }
+
+    .qris-card strong {
+      display: block;
+      margin-top: 12px;
+      color: var(--navy);
+      font-size: .95rem;
+    }
+
+    .qris-card p {
+      font-size: .78rem;
       color: var(--muted);
-      font-size: .72rem;
-      font-weight: 600;
+      margin: 4px 0 0;
     }
 
     /* LOCATION */
@@ -662,41 +575,16 @@
       color: #8e9bab;
     }
 
-    /* ANIMASI SAAT SCROLL */
+    /* SCROLL ANIMATION */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity .7s ease, transform .7s ease;
     }
 
-    .reveal.show {
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    @keyframes posterFloat {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-7px);
-      }
-    }
-
-    /* AKSESIBILITAS */
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
     }
 
     /* TABLET */
@@ -705,7 +593,7 @@
         gap: 14px;
       }
 
-      .nav-links a {
+      .nav-links a:not(.btn) {
         display: none;
       }
 
@@ -715,28 +603,19 @@
         padding: 11px 16px;
       }
 
-      .hero-grid {
-        grid-template-columns: 1fr .72fr;
-        gap: 28px;
-      }
-
-      .poster {
-        min-height: 380px;
-      }
-
-      .poster-inner {
-        min-height: 344px;
-      }
-
       .schedule-layout {
         grid-template-columns: 1fr;
         gap: 25px;
       }
 
-      .contact-banner,
-      .register-banner {
+      .contact-banner {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .register-banner {
+        grid-template-columns: 1fr auto;
+        padding: 30px;
       }
     }
 
@@ -754,28 +633,24 @@
         max-width: 170px;
       }
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        padding-top: 65px;
-        padding-bottom: 70px;
+      .hero {
+        padding: 30px 0 45px;
       }
 
-      h1 {
-        font-size: clamp(3.4rem, 17vw, 5rem);
+      .hero-poster {
+        width: 100%;
+        border-radius: 5px;
       }
 
-      .hero-copy {
-        font-size: 1rem;
+      .hero-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
       }
 
-      .poster {
-        min-height: 340px;
-        border-radius: 130px 130px 22px 22px;
-      }
-
-      .poster-inner {
-        min-height: 304px;
-        border-radius: 115px 115px 15px 15px;
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
       }
 
       section {
@@ -792,20 +667,32 @@
         gap: 12px;
       }
 
-      .contact-banner,
       .register-banner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        padding: 30px 20px;
+      }
+
+      .register-info {
+        max-width: 100%;
+      }
+
+      .qris-card {
+        width: min(100%, 290px);
+      }
+
+      .contact-banner {
         padding: 30px 24px;
       }
 
-      .register-payment {
+      .contact-actions {
+        flex-direction: column;
         width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
       }
 
-      .qris-image {
-        width: 112px;
-        height: 112px;
+      .contact-actions .btn {
+        width: 100%;
       }
 
       .footer-inner {
@@ -813,16 +700,33 @@
         align-items: flex-start;
       }
     }
+
+    /* REDUCE MOTION ACCESSIBILITY */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- NAVBAR -->
   <header>
     <div class="container nav">
+
       <a class="brand" href="#beranda" aria-label="Hikayat Nusantara - Beranda">
-        <img class="logo" src="img/logo_sma.png" alt="Logo SMA Pangudi Luhur Santo Yosef" />
+        <img
+          class="logo"
+          src="img/logo_sma.png"
+          alt="Logo SMA Pangudi Luhur Santo Yosef"
+        />
+
         <div>
           <div class="brand-name">Hikayat Nusantara</div>
           <div class="brand-school">SMA Pangudi Luhur Santo Yosef Surakarta</div>
@@ -836,89 +740,85 @@
         <a href="#kontak">Narahubung</a>
         <a class="btn btn-gold" href="#daftar">Daftar</a>
       </nav>
+
     </div>
   </header>
 
   <main>
 
-    <!-- HERO -->
+    <!-- HERO / POSTER UTAMA -->
     <section class="hero" id="beranda">
       <div class="container hero-grid">
 
-        <div class="reveal">
-          <div class="eyebrow">Gelar Karya Symphony of Nusantara</div>
+        <div class="hero-content">
 
-          <h1>
-            Hikayat
-            <span>Nusantara.</span>
-          </h1>
-
-          <p class="hero-copy">
-            Drama musikal kelas 10 yang merajut cerita rakyat Nusantara
-            dalam satu semesta cerita.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-gold" href="#daftar">Daftar Sekarang →</a>
-            <a class="btn btn-outline" href="#jadwal">Lihat Jadwal ↘</a>
+          <div class="eyebrow">
+            Gelar Karya Symphony of Nusantara
           </div>
+
+          <img
+            class="hero-poster"
+            src="img/poster-hikayat.jpg"
+            alt="Poster resmi Hikayat of Nusantara — Cadi Sukub"
+          />
 
           <div class="hero-meta">
             <span><i class="meta-dot"></i> Jumat, 20 November 2026</span>
             <span><i class="meta-dot"></i> Open gate 18.30 WIB</span>
             <span><i class="meta-dot"></i> Aula SMA PL Santo Yosef</span>
           </div>
-        </div>
 
-        <!-- POSTER DI PANEL KANAN, BUKAN MENGGANTIKAN LAYOUT HERO -->
-        <div class="poster reveal" aria-label="Poster Hikayat Nusantara">
-          <div class="poster-inner">
-            <img
-              class="poster-image"
-              src="img/poster-hikayat.jpg"
-              alt="Poster Hikayat of Nusantara: Cadi Sukub"
-            />
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#daftar">
+              Daftar Sekarang →
+            </a>
+
+            <a class="btn btn-outline" href="#jadwal">
+              Lihat Jadwal ↘
+            </a>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
 
-    <!-- TENTANG -->
+    <!-- TENTANG ACARA -->
     <section id="tentang">
       <div class="container">
 
-        <div class="section-head reveal">
+        <div class="section-head">
           <div class="section-label">Tentang acara</div>
           <h2>Malam seni untuk semua.</h2>
-          <p>Merajut keberagaman Nusantara melalui pertunjukan seni.</p>
+          <p>
+            Merajut keberagaman Nusantara melalui pertunjukan seni.
+          </p>
         </div>
 
         <div class="details-strip">
 
-          <div class="detail reveal">
+          <div class="detail">
             <div class="detail-icon">✦</div>
             <strong>Drama Musikal</strong>
             <span>
               Puncak acara dari siswa kelas 10 SMA Santo Yosef yang
-              mempertemukan kisah Malin Kundang, Timun Mas, Roro Jonggrang,
-              serta Bawang Merah dan Bawang Putih dalam satu semesta cerita,
-              ditutup dengan sosok Ibu Fatmawati yang menjahit bendera
-              Merah Putih.
+              mempertemukan kisah Malin Kundang, Timun Mas,
+              Roro Jonggrang, serta Bawang Merah dan Bawang Putih
+              dalam satu semesta cerita, ditutup dengan sosok
+              Ibu Fatmawati yang menjahit bendera Merah Putih.
             </span>
           </div>
 
-          <div class="detail reveal">
+          <div class="detail">
             <div class="detail-icon">◈</div>
             <strong>Band, Tari & Keroncong</strong>
             <span>
               Penampilan pembuka dari siswa kelas 10 SMA Santo Yosef
-              yang menyajikan musik dan tarian tradisional, diiringi
-              alat musik tradisional dan suasana yang menarik.
+              yang menyajikan musik dan tarian tradisional,
+              diiringi alat musik tradisional dan suasana yang menarik.
             </span>
           </div>
 
-          <div class="detail reveal">
+          <div class="detail">
             <div class="detail-icon">◎</div>
             <strong>Usdan & Photobooth</strong>
             <span>
@@ -932,24 +832,26 @@
       </div>
     </section>
 
-    <!-- JADWAL -->
+    <!-- JADWAL ACARA -->
     <section class="schedule-section" id="jadwal">
       <div class="container schedule-layout">
 
-        <div class="schedule-intro reveal">
+        <div class="schedule-intro">
           <div class="section-label">Rundown acara</div>
           <h2>Catat waktunya.</h2>
           <p>Jumat, 20 November 2026 (WIB).</p>
         </div>
 
-        <div class="reveal">
+        <div>
           <div class="schedule-list">
 
             <div class="schedule-item">
               <div class="schedule-time">18.30–19.00</div>
               <div>
                 <h3>Open Gate</h3>
-                <p>Penonton memasuki area acara, usdan dan photobooth dibuka.</p>
+                <p>
+                  Penonton memasuki area acara, usdan dan photobooth dibuka.
+                </p>
               </div>
             </div>
 
@@ -957,7 +859,10 @@
               <div class="schedule-time">19.00–20.00</div>
               <div>
                 <h3>Sesi Pertama</h3>
-                <p>MC kelas 10, penampilan pembuka band, dilanjutkan tari dan keroncong.</p>
+                <p>
+                  MC kelas 10, penampilan pembuka band,
+                  dilanjutkan tari dan keroncong.
+                </p>
               </div>
             </div>
 
@@ -965,7 +870,9 @@
               <div class="schedule-time">20.00–21.00</div>
               <div>
                 <h3>Sesi Kedua</h3>
-                <p>Penampilan Kesenian Modern dan/atau jeda.</p>
+                <p>
+                  Penampilan Kesenian Modern dan/atau jeda.
+                </p>
               </div>
             </div>
 
@@ -973,7 +880,9 @@
               <div class="schedule-time">21.00–22.00</div>
               <div>
                 <h3>Drama Musikal “Hikayat Nusantara”</h3>
-                <p>Puncak acara dan penutupan.</p>
+                <p>
+                  Puncak acara dan penutupan.
+                </p>
               </div>
             </div>
 
@@ -991,55 +900,59 @@
     <section id="daftar" style="padding-bottom:0">
       <div class="container">
 
-        <div class="register-banner reveal">
+        <div class="register-banner">
 
-          <div>
+          <div class="register-info">
             <div class="section-label">Pendaftaran</div>
+
             <h2>Amankan tempatmu.</h2>
-            <p>Daftar sebagai penonton Hikayat Nusantara.</p>
+
+            <p>
+              Daftar sebagai penonton Hikayat Nusantara dan
+              lakukan pembayaran melalui QRIS yang tersedia.
+            </p>
+
+            <div class="register-button">
+              <a
+                class="btn btn-dark"
+                href="LINK_PENDAFTARAN"
+                target="_blank"
+                rel="noopener"
+              >
+                Daftar Sekarang →
+              </a>
+            </div>
           </div>
 
-          <div class="register-payment">
+          <div class="qris-card">
+            <img
+              src="img/qris-hikayat.jpg"
+              alt="QRIS pembayaran Hikayat Nusantara"
+            />
 
-            <div class="qris-wrap">
-              <a href="img/qris-hikayat.jpg" target="_blank" rel="noopener">
-                <img
-                  class="qris-image"
-                  src="img/qris.png"
-                  alt="QRIS pembayaran Hikayat Nusantara"
-                />
-              </a>
-              <span class="qris-caption">Scan QRIS untuk membayar</span>
-            </div>
+            <strong>Pembayaran QRIS</strong>
 
-            <!-- Ganti LINK_PENDAFTARAN dengan link Google Form -->
-            <a
-              class="btn btn-dark"
-              href="LINK_PENDAFTARAN"
-              target="_blank"
-              rel="noopener"
-            >
-              Daftar Sekarang →
-            </a>
-
+            <p>
+              Scan menggunakan aplikasi pembayaran yang mendukung QRIS.
+            </p>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- LOKASI -->
+    <!-- LOKASI ACARA -->
     <section class="location-section" id="lokasi" style="margin-top:80px">
       <div class="container">
 
-        <div class="section-head reveal">
+        <div class="section-head">
           <div class="section-label">Tempat pelaksanaan</div>
           <h2>Sampai jumpa di acara.</h2>
         </div>
 
         <div class="location-grid">
 
-          <div class="location-card reveal">
+          <div class="location-card">
             <div class="detail-icon">⌖</div>
 
             <h3>Aula SMA Pangudi Luhur Santo Yosef</h3>
@@ -1050,7 +963,8 @@
             </p>
 
             <p>
-              <strong>Tanggal:</strong> Jumat, 20 November 2026<br>
+              <strong>Tanggal:</strong> Jumat, 20 November 2026
+              <br>
               <strong>Waktu:</strong> 18.30–22.00 WIB
             </p>
 
@@ -1064,7 +978,7 @@
             </a>
           </div>
 
-          <div class="map-frame reveal">
+          <div class="map-frame">
             <iframe
               title="Peta lokasi SMA Pangudi Luhur Santo Yosef Surakarta"
               loading="lazy"
@@ -1081,7 +995,7 @@
     <section class="contact-section" id="kontak">
       <div class="container">
 
-        <div class="contact-banner reveal">
+        <div class="contact-banner">
 
           <div>
             <div class="section-label" style="color:var(--gold-light)">
@@ -1091,8 +1005,8 @@
             <h2>Ada pertanyaan?</h2>
 
             <p>
-              Hubungi Narahubung kami jika ada pertanyaan
-              (Tian dan Satya).
+              Hubungi narahubung kami jika ada pertanyaan
+              mengenai acara. (Tian dan Satya)
             </p>
           </div>
 
@@ -1134,14 +1048,16 @@
   <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
+
       <div>
-        <strong>Hikayat Nusantara</strong> ·
-        SMA Pangudi Luhur Santo Yosef Surakarta
+        <strong>Hikayat Nusantara</strong>
+        · SMA Pangudi Luhur Santo Yosef Surakarta
       </div>
 
       <div class="footer-note">
         © <span id="year"></span> Panitia Symphony of Nusantara
       </div>
+
     </div>
   </footer>
 
@@ -1151,29 +1067,35 @@
     document.getElementById("year").textContent =
       new Date().getFullYear();
 
-    // Animasi elemen ketika masuk ke layar
-    const revealElements = document.querySelectorAll(".reveal");
+    // Elemen yang akan mendapatkan animasi saat scroll
+    const revealElements = document.querySelectorAll(
+      ".section-head, .detail, .schedule-item, .register-banner, .location-card, .map-frame, .contact-banner"
+    );
 
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+    // Tambahkan class animasi
+    revealElements.forEach(element => {
+      element.classList.add("reveal");
+    });
+
+    // Observer untuk mendeteksi elemen masuk ke layar
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
           }
         });
-      }, {
+      },
+      {
         threshold: 0.12
-      });
+      }
+    );
 
-      revealElements.forEach((element) => {
-        observer.observe(element);
-      });
-    } else {
-      revealElements.forEach((element) => {
-        element.classList.add("show");
-      });
-    }
+    // Jalankan animasi
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
   </script>
 
 </body>
